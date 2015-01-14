@@ -1,0 +1,17 @@
+<nav>
+  {{link-to "Borrowers" "index" class="main"}}
+
+  <input type="checkbox" id="bmenu" class="burgercheck">
+  <label for="bmenu" class="burgermenu"></label>
+
+  <div class="menu">
+  {{#if session.isAuthenticated}}
+    {{link-to "Dashboard" "index" class="icon-gauge"}}
+    {{link-to "Friends" "friends" (query-params sortBy="totalArticles") class="icon-users-1"}}
+    {{link-to "New Friend" "friends.new" class="icon-user-add"}}
+    <a {{action "invalidateSession"}}>Logout</a>
+  {{else}}
+    {{link-to "Login" "login"}}
+  {{/if}}
+  </div>
+</nav>

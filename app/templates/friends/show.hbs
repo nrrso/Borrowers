@@ -1,0 +1,23 @@
+
+{{link-to 'Back' 'friends.index' class="button"}} <br>
+<div class="friend-profile row">
+  <div class="friend-info full">
+    {{fill-murray width=300 height=300}}
+    <div>
+      <p>{{model.fullName}}</p>
+      <p>{{model.email}}</p>
+      <p>{{model.twitter}}</p>
+      <ul class="friend-profile-links">
+        <li>{{link-to 'Lend Articles' 'articles.new'}}</li>
+        <li>{{link-to 'Edit info' 'friends.edit' model}}</li>
+        <li><a href="#" {{action "delete" model}}>Delete</a></li>
+      </ul>
+      <input type="checkbox" id="returned">
+      <label for="returned">Show returned</label>
+    </div>
+  </div>
+</div>
+
+<div class="articles-container">
+  {{outlet}}
+</div>

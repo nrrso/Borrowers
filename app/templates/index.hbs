@@ -1,0 +1,5 @@
+<h2>Welcome</h2>
+{{#unless session.isAuthenticated}}
+  <p>You can {{link-to "Login" "login" class="button"}} with your Goolge Account.</p>
+{{/unless}}
+<hr>
