@@ -1,3 +1,8 @@
-<p>
-<a {{action "authenticateWithGoogle"}} class="button">Login with Google</a>
-</p>
+
+<form {{action "authenticate" on="submit"}}>
+  <label for="identification">Login</label>
+  {{input id="identification" placeholder="Enter Login" value=identification}}
+  <label for="password">Password</label>
+  {{input id="password" placeholder="Enter Password" value=password type="password"}}
+  <button type="submit">Login</button>
+</form>

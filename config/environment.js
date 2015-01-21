@@ -12,22 +12,27 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-    torii: {
-      providers: {
-        'google-oauth2': {
-          apiKey: '445417322970-8gi8vvckfjnu6cbarkkm9ku5q7lsks43.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200'
-        }
-      }
-    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
   };
 
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:token',
+    crossOriginWhitelist: ['http://localhost:1338']
+  };
+
+  ENV['simple-auth-token'] = {
+    serverTokenEndpoint: 'http://localhost:1338/auths/login',
+    authorizationPrefix: 'JWT',
+    tokenPropertyName: 'token',
+    authorizationHeaderName: 'X-Auth',
+    identificationField: 'email'
+  };
+
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
@@ -49,6 +54,14 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+  ENV.contentSecurityPolicy = {
+  'default-src': "'none'",
+  'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
+  'connect-src': "'self' http://localhost:1338", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+  'img-src': "'self' http://www.fillmurray.com",
+  'style-src': "'self' 'unsafe-inline' http://localhost", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
+  'media-src': "'self'"
+}
 
   return ENV;
 };

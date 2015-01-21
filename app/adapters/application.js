@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-export default DS.ActiveModelAdapter.extend({
-  namespace: 'api/v4',
+export default DS.RESTAdapter.extend({
+  host: 'http://localhost:1338',
   coalesceFindRequests: true
 });
